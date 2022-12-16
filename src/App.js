@@ -16,22 +16,11 @@ import { LoopPingPong } from 'three';
 // studio.extend(extension)
 const demoSheet = getProject('Demo Project', { state: state }).sheet('Demo Sheet')
 function App() {
-  const logoControls = useAnimation();
-  async function Logo() {
-    await logoControls.start({ transition: { duration: 1 } });
-    await logoControls.start({
-
-      y: -200, scale: 3, transition: { delay: 5, duration: 1, },
-    });
-  }
-  async function anim() {
-    await demoSheet.sequence.play({ iterationCount: 1, range: [0, 10] })
-  }
 
 
   useEffect(() => {
-    Logo()
-    anim()
+    demoSheet.project.ready.then(() => { demoSheet.sequence.play({ iterationCount: 1, range: [0, 10] }) })
+
   }, [])
   return (
     <div className="App">
