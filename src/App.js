@@ -29,42 +29,37 @@ function App() {
     <>
 
       <div className="App">
-        <Canvas >
-          <SheetProvider sheet={demoSheet}>
-            {/* <e.fog theatreKey='fog' attach="fog" color="hotpink" near={1} far={10} /> */}
-            {/* <e.PerspectiveCamera theatreKey="Camera" makeDefault position={[5, 5, -5]} fov={75} /> */}
-            <ambientLight intensity={2} />
-            <e.pointLight theatreKey="pLight" position={[40, 40, 40]} />
-            <Suspense fallback={null}>
-              <e.group theatreKey="text">
+        {
+          House ?
+            <Canvas >
+              <SheetProvider sheet={demoSheet}>
+                {/* <e.fog theatreKey='fog' attach="fog" color="hotpink" near={1} far={10} /> */}
+                {/* <e.PerspectiveCamera theatreKey="Camera" makeDefault position={[5, 5, -5]} fov={75} /> */}
+                <ambientLight intensity={2} />
+                <e.pointLight theatreKey="pLight" position={[40, 40, 40]} />
+                <Suspense fallback={null}>
+                  <e.group theatreKey="text">
 
-                <Text position={[0, 4, -10]} fontSize={6}>
-                  Coding Ninjas
-                  <meshStandardMaterial color="#fff" toneMapped={false} />
-                </Text>
+                    <Text position={[0, 4, -10]} fontSize={6}>
+                      Coding Ninjas
+                      <meshStandardMaterial color="#fff" toneMapped={false} />
+                    </Text>
 
-              </e.group>
-              <e.group theatreKey="text2">
-                <Text position={[0, 4, -30]} fontSize={3}>
-                  SRM
-                  <meshStandardMaterial color="#fff" toneMapped={false} />
-                </Text>
-              </e.group>
-              {
-                House ?
+                  </e.group>
+                  <e.group theatreKey="text2">
+                    <Text position={[0, 4, -30]} fontSize={3}>
+                      SRM
+                      <meshStandardMaterial color="#fff" toneMapped={false} />
+                    </Text>
+                  </e.group>
+
+
                   <House theatreKey="House" />
-                  : <ClipLoader
-                    color={"#000000"}
-                    loading={Loading}
-                    size={150}
-                    aria-label="Loading Spinner"
-                    data-testid="loader"
-                  />
-              }
 
-            </Suspense>
-          </SheetProvider>
-        </Canvas>
+                </Suspense>
+              </SheetProvider>
+            </Canvas> : null
+        }
       </div >
     </>
 
