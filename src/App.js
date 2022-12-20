@@ -13,8 +13,10 @@ import { editable as e, SheetProvider } from '@theatre/r3f'
 import state from './Components/ninjahouse.json'
 import { animate, motion, useAnimation } from "framer-motion"
 import { LoopPingPong } from 'three';
-// studio.initialize()
-// studio.extend(extension)
+import { MoonLoader } from 'react-spinners';
+import Moon from './Components/Moon'
+studio.initialize()
+studio.extend(extension)
 const demoSheet = getProject('Demo Project', { state: state }).sheet('Demo Sheet')
 function App() {
 
@@ -32,12 +34,13 @@ function App() {
         {
           House ?
             <Canvas >
-              <SheetProvider sheet={demoSheet}>
-                {/* <e.fog theatreKey='fog' attach="fog" color="hotpink" near={1} far={10} /> */}
-                {/* <e.PerspectiveCamera theatreKey="Camera" makeDefault position={[5, 5, -5]} fov={75} /> */}
-                <ambientLight intensity={2} />
-                <e.pointLight theatreKey="pLight" position={[40, 40, 40]} />
-                <Suspense fallback={null}>
+              <Suspense fallback={null}>
+                <SheetProvider sheet={demoSheet}>
+                  {/* <e.fog theatreKey='fog' attach="fog" color="hotpink" near={1} far={10} /> */}
+                  {/* <e.PerspectiveCamera theatreKey="Camera" makeDefault position={[5, 5, -5]} fov={75} /> */}
+                  <ambientLight intensity={2} />
+                  <e.pointLight theatreKey="pLight" position={[40, 40, 40]} />
+
                   <e.group theatreKey="text">
 
                     <Text position={[0, 4, -10]} fontSize={6}>
@@ -55,9 +58,10 @@ function App() {
 
 
                   <House theatreKey="House" />
+                  <Moon />
 
-                </Suspense>
-              </SheetProvider>
+                </SheetProvider>
+              </Suspense>
             </Canvas> : null
         }
       </div >
